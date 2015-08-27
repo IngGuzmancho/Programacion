@@ -1,0 +1,18 @@
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+int main()
+{
+	float R,A;
+	cout<< "Ingrese el radio de la circunferencia ";
+	cin>> R;
+		A=R*R*3.14159;
+
+		cout<<"El area de la circunferencia es " <<A;
+		getch();
+
+}
