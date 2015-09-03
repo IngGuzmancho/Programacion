@@ -2,16 +2,17 @@
 //Autor: Jose Maria Guzman Capobianco
 //Fecha: 9/3/2015
 
+//Declarar Libreria
 #include "stdafx.h"
 //Libreria
 #include "conio.h"
 //Libreria
 #include <iostream>
-//Libreria
+//Libreria para manejo cin y cout
 using namespace std;
 //Para que la entrada sea el teclado y la salida el monitor
 void main()
-	//
+	// Cuerpo Principal
 {
    float A,B,H;
    //Declaracion de Variables
@@ -26,5 +27,6 @@ void main()
    cout<<"El area del triangulo es: " <<A;
    //Para expresar el resultado de la operacion
    getch();
-   //Para corregir el conio.h
+   //Para corregir el conio.h y detener la pantalla
 }
+//Finaliza el programa
