@@ -1,0 +1,30 @@
+//Nombre: Area del Triangulo
+//Autor: Jose Maria Guzman Capobianco
+//Fecha: 9/3/2015
+
+#include "stdafx.h"
+//Libreria
+#include "conio.h"
+//Libreria
+#include <iostream>
+//Libreria
+using namespace std;
+//Para que la entrada sea el teclado y la salida el monitor
+void main()
+	//
+{
+   float A,B,H;
+   //Declaracion de Variables
+   cout<<"Ingrese Base ";
+   cin>>B;
+   //Ingreso de Datos
+   cout<<"Ingrese altura ";
+   cin>>H;
+   //Ingreso de Datos
+   A=(B*H)/2;
+   //Formula para que calcule el Area del Triangulo
+   cout<<"El area del triangulo es: " <<A;
+   //Para expresar el resultado de la operacion
+   getch();
+   //Para corregir el conio.h
+}
