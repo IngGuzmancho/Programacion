@@ -1,0 +1,22 @@
+// VOTACION.cpp : Defines the entry point for the console application.
+// Nombre: Jose Maria Guzman Capobianco
+// Fecha: 10 de septiembre de 2015
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	float A,B,C;
+	cout<< "Ingrese la edad ";
+	cin>> A;
+	if(A>=18)
+	cout<< "Puede votar";
+	else
+		cout<<"No puede votar" ;
+	getch();
+
+	
+}
