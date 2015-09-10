@@ -1,0 +1,32 @@
+// El numero mayor.cpp : Defines the entry point for the console application.
+//Nombre: Jose Maria Guzman Capobianco
+//Fecha: 10 de septiembre de 2015
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+
+using namespace std;
+
+void main()
+{
+   float A,B,C,Mayor;
+
+   cout<< "Ingresar el primer numero: ";
+   cin>> A;
+   cout<< "Ingresar el segundo numero: ";
+   cin>> B;
+   cout<< "Ingresar el tercer numero: ";
+   cin>> C;
+   if (A>B&&A>C);
+   Mayor=A;
+   if (B>A&&B>C)
+	Mayor=B;
+	if (C>A&&C>B)
+	Mayor=C;
+
+    cout<< "Su numero mayor es: ";
+	cout<< Mayor;
+
+
+   getch();
+}
