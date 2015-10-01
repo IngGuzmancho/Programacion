@@ -1,0 +1,32 @@
+// IVA1
+//Nombre: Jose Maria Guzman Capobianco
+
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+
+using namespace std;
+
+void main()
+{
+	float sueldo,IVA;
+	int N,i;
+	cout<<"Ingrese el numero de personas a calcular "<<endl;
+	cin>> N;
+	
+	for(i=1;i<=N;i++)
+		cout<<"Ingrese el sueldo de la persona : ";
+		cin>> sueldo;
+		IVA=0;
+		{	
+		if(sueldo>=2*1656)
+		
+		IVA=sueldo*0.13;
+		else
+		IVA=sueldo*0;
+
+		}
+	cout<<"El IVA a pagar sera: "<<IVA<<endl;
+	getch();
+}
+
