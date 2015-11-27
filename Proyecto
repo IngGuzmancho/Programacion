@@ -1,0 +1,282 @@
+#include <iostream>
+#include <conio.h>
+#include <stdlib.h>
+#include <string>
+
+using namespace std;
+const float costo_auto = 200;
+const float costo_vagoneta = 250;
+const float costo_camioneta = 250;
+const float costo_micro = 300;
+const float costo_servicio = 50;
+const int M=10;
+const int P=10;
+const int S=10;
+int cantidadmecanicos=0;
+int cantidadpersonas=0;
+int cantidadsolicitudes=0;
+
+
+
+struct MECANICO
+{
+        int idmecanico;
+        string nombre;
+        string carnet;
+        string edad;
+        string telefono;
+        string sexo;
+        string placagrua;
+        string ubicaciontaller;
+};
+struct PERSONA{
+
+        int idpersona;
+        string nombre;
+        string carnet;
+        string edad;
+        string telefono;
+        string sexo;
+        string placavehiculo;
+};
+struct SOLICITUD
+{
+  int idsolicitud;
+  float costototal;
+  MECANICO mec;
+  PERSONA per;
+};
+
+void MENUPRINCIPAL(){
+cout<<"************PRINCIPAL************  "<<endl<<endl;
+cout<<"1.- Solicitar Mecanico."<<endl;
+cout<<"2.- Registrar Mecanico."<<endl;
+cout<<"3.- Lista de Mecanicos."<<endl;
+cout<<"4.- Registro de Solicitudes. "<<endl;
+cout<<"0.- Salir."<<endl;
+}
+
+void MENUVEHICULO(){
+cout<<"************Tabla Vehiculo************"<<endl;
+cout<<"----seleccione el tipo de vehiculo que posee-------"<<endl;
+cout<<"1.- Auto."<<endl;
+cout<<"2.- Vagoneta."<<endl;
+cout<<"3.- Camioneta."<<endl;
+cout<<"4.- Micro. "<<endl;
+}
+
+MECANICO Datos_Mecanico (){
+        MECANICO reg;
+        string k;
+        reg.idmecanico=cantidadmecanicos+1;
+        cantidadmecanicos++;
+		reg.nombre="";
+
+        cout<<"INGRESE SU NOMBRE COMPLETO:"<<endl;
+      
+		fflush(stdin);
+        getline(cin,reg.nombre);
+        cout<<"INGRESE SU NUMERO DE CARNET:"<<endl;
+     
+        getline(cin,reg.carnet);
+        cout<<"INGRESE SU EDAD:"<<endl;
+      
+        getline(cin,reg.edad);
+        cout<<"INGRESE SU NUMERO DE TELEFONO:"<<endl;
+      
+        getline(cin,reg.telefono);
+        cout<<"INGRESE SU GENERO :"<<endl;
+      
+        getline(cin,reg.sexo);
+        cout<<"USTED POSEE UNA GRUA?(1-SI , 2-NO):"<<endl;
+        getline(cin,k);
+
+        if(k== "1"){cout<<"INGRESE SU NUMERO DE PLACA:";/*cin>>reg.placagrua;*/getline(cin,reg.placagrua);}
+        else{reg.placagrua = "no tiene";}
+
+        cout<<"INGRESE LA DIRECCION DE SU TALLER:"<<endl;
+       
+         getline(cin,reg.ubicaciontaller);
+        return reg;
+}
+PERSONA Datos_Persona(){
+        PERSONA reg;
+
+        reg.idpersona=cantidadpersonas+1;
+        cantidadpersonas++;
+        cout<<"INGRESE SU NOMBRE COMPLETO:"<<endl;
+        getline(cin,reg.nombre);
+
+        cout<<"INGRESE SU NUMERO DE CARNET:"<<endl;
+        getline(cin,reg.carnet);
+
+
+        cout<<"INGRESE SU EDAD:"<<endl;
+        getline(cin,reg.edad);
+
+        cout<<"INGRESE SU NUMERO DE TELEFONO:"<<endl;
+        getline(cin,reg.telefono);
+
+        cout<<"INGRESE SU GENERO (MASCULINO , FEMENINO):"<<endl;
+        getline(cin,reg.sexo);
+
+
+        cout<<"INGRESE SU NUMERO DE PLACA:";
+        getline(cin,reg.placavehiculo);
+
+        return reg;
+}
+string Tipo_Vehiculo(){
+
+        string op;
+
+        system("cls");
+
+        MENUVEHICULO();
+        cout<<"opcion:";
+        getline(cin,op);
+
+
+        return (op);
+}
+SOLICITUD Datos_Solicitud(MECANICO A,PERSONA B){
+
+        SOLICITUD reg;
+        reg.costototal =0 ;
+        string aux;
+        reg.idsolicitud = cantidadsolicitudes +1;
+        cantidadsolicitudes++;
+        reg.mec=A;
+        reg.per=B;
+        system("cls");
+        aux= Tipo_Vehiculo();
+        ////calculo del costo de la solicitud segun el tipo de vehiculo////
+
+        if(aux=="1"){reg.costototal=reg.costototal + costo_auto;}
+        else if(aux=="2"){reg.costototal=reg.costototal + costo_vagoneta;}
+        else if(aux=="3"){reg.costototal=reg.costototal + costo_camioneta;}
+        else if(aux=="4"){reg.costototal=reg.costototal + costo_micro;}
+        /////se aumenta el costo de la solicitud del servicio/////
+		reg.costototal =reg.costototal+costo_servicio;
+        return reg;
+}
+void Lista_Mecanicos(MECANICO vec[])
+{
+        int i=0;
+        MECANICO reg;
+        cout<<"id---nombre---edad---carnet---sexo-telefono--placagrua--ubicaciontaller"<<endl;
+        for(i=0;i<cantidadmecanicos;i++){
+            reg=vec[i];
+
+            cout<<reg.idmecanico<<"    "<<reg.nombre<<"    "<<reg.edad<<"    "<<reg.carnet<<"    "<<reg.sexo<<"    "<<reg.telefono<<"    "<<reg.placagrua<<"    "<<reg.ubicaciontaller<<endl;
+        }
+}
+void Lista_Solicitudes(SOLICITUD vec[])
+{
+        int i=0;
+        SOLICITUD reg;
+        cout<<"         "<<"id---nombrepersona---nombremecanico---placapersona---placagrua---ubicaciontaller"<<endl;
+        for(i=0;i<cantidadsolicitudes;i++){
+            reg=vec[i];
+
+            cout<<reg.idsolicitud<<"     "<<reg.per.nombre<<"     "<<reg.mec.nombre<<"     "<<reg.per.placavehiculo<<"     "<<reg.mec.placagrua<<"     "<<reg.mec.ubicaciontaller<<endl;
+        }
+}
+
+void main()
+{
+        MECANICO vm[M];
+        PERSONA vp[P];
+        SOLICITUD vs[S];
+        char opcion;
+
+        do{
+                MENUPRINCIPAL();
+                cout<<"Opcion:";
+                cin>>opcion;
+                system("cls");
+                switch(opcion){
+                case '1':{
+                        SOLICITUD reg;
+                        char opc[2];
+
+                        if(cantidadmecanicos == 0){cout<<"no existen mecanicos para atender solicitudes actualmente!!!"<<endl;_getch();system("cls");}
+                        else{
+                                do{
+                                system("cls");
+                                Lista_Mecanicos(vm);
+                                cout<<"Seleccione un mecanico:";
+                                gets(opc);
+                                reg.mec=vm[atoi(opc)];
+                                }while( strlen(opc)==0 );
+                        
+                        PERSONA info;
+                        info=Datos_Persona();
+                        vp[info.idpersona-1]=info;
+
+                        
+                        reg.per=info;
+                        reg=Datos_Solicitud(reg.mec,reg.per);
+                        vs[cantidadsolicitudes-1]=reg;
+
+                        cout<<"Se a registrado la operacion con exito."<<endl;
+                        ////se imprime el costo total////
+                        cout<<"El costo de la operacion es:";
+                        cout<<reg.costototal<<endl;
+
+                        _getch();
+                        system("cls");
+                        }
+                        break;
+                }
+                case '2':{
+                        MECANICO reg;
+                        system("cls");
+                        reg=Datos_Mecanico();
+                        vm[cantidadmecanicos-1]=reg;
+                        cout<<endl<<endl<<"se a registrado satisfatoriamente."<<endl;
+                        _getch();
+                        system("cls");
+
+                        break;
+                }
+                case '3':{
+                        MECANICO re;
+                        system("cls");
+                        if(cantidadmecanicos==0){cout<<"No existen mecanicos en la base de datos."<<endl;}
+                        else{
+
+                               Lista_Mecanicos(vm);
+                               cout<<endl<<endl;
+
+                        }
+
+
+                        _getch();
+                        system("cls");
+                        break;
+                }
+                case '4':{
+                        SOLICITUD reg;
+                        system("cls");
+                        if(cantidadsolicitudes==0){cout<<"no se ha realizado ninguna solicitud!"<<endl;}
+                        else{
+
+                             Lista_Solicitudes(vs);
+
+                        }
+
+                        _getch();
+                        system("cls");
+                        break;
+                }
+
+
+                system("cls");
+           }
+        }while(opcion != '0');
+        cout<<"presione una tecla para continuar!"<<endl;
+        _getch();
+        
+}
+
